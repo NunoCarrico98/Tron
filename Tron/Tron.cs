@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace Tron
 {
@@ -29,13 +26,33 @@ namespace Tron
                 }
             }
 
-            // Swap buffer arrays so we can read values from it
+            // Swap buffer arrays so we can read values from our Double Buffer
             gameWorld.Swap();
         }
 
-        public void Gameloop()
+        public void Gameloop(int msFramesPerSecond)
         {
             renderer.RenderGameWorld(gameWorld);
+
+            // Initialize game loop
+            while (true)
+            {
+                // Obtain actual time in ticks
+                long start = DateTime.Now.Ticks;
+
+                // Update world
+                Update();
+
+                // Swap buffer
+                gameWorld.Swap();
+                // Send it to renderer
+                renderer.RenderGameWorld(gameWorld);
+
+                // Wait until it is time for the next iteration
+                Thread.Sleep((int)
+                    (start / 10000 + msFramesPerSecond 
+                    - DateTime.Now.Ticks / 10000));
+            }
         }
 
         public void Update()

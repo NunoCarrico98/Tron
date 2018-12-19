@@ -10,9 +10,13 @@ namespace Tron
     {
         static void Main(string[] args)
         {
+            // Render game view
             Renderer renderer = new Renderer();
+
+            // Initialize game with a 20x20 grid
             Tron t = new Tron(20, 20, renderer);
 
+            // Start game
             t.Gameloop();
         }
     }
