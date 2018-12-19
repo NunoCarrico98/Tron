@@ -8,6 +8,9 @@ namespace Tron
 {
     public class Renderer
     {
+        private readonly char stepped = '.';
+        private readonly char empty = '-';
+
         public void ShowMainMenu()
         {
             Console.WriteLine("----- WELCOME TO TRON -----");
@@ -16,6 +19,23 @@ namespace Tron
             Console.WriteLine("2. AI mode");
             Console.WriteLine("3 - Credits");
             Console.WriteLine("3. Quit");
+        }
+
+        public void RenderGameWorld(DoubleBuffer2D<bool> gameWorld)
+        {
+            for (int i = 0; i < gameWorld.XDim; i++)
+            {
+                for (int j = 0; j < gameWorld.YDim; j++)
+                {
+                    Console.Write(gameWorld[i, j] ? stepped : empty);
+                    Console.Write(' ');
+                }
+                Console.WriteLine();
+            }
+            // testing purposes only
+            Console.ReadKey();
+
+            Console.SetCursorPosition(0, 0);
         }
     }
 }

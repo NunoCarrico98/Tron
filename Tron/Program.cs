@@ -10,6 +10,10 @@ namespace Tron
     {
         static void Main(string[] args)
         {
+            Renderer renderer = new Renderer();
+            Tron t = new Tron(20, 20, renderer);
+
+            t.Gameloop();
         }
     }
 }

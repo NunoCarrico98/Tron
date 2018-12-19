@@ -10,8 +10,8 @@ namespace Tron
     {
         private T[,] current;
         private T[,] next;
-        private int XDim { get; }
-        private int YDim { get; }
+        public int XDim { get; }
+        public int YDim { get; }
 
         public DoubleBuffer2D(int x, int y)
         {
@@ -40,5 +40,4 @@ namespace Tron
             next = temp;
         }
     }
-}
 }
