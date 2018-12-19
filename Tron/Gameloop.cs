@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tron
 {
-    public class Program
+    public class Gameloop
     {
-        static void Main(string[] args)
-        {
-        }
     }
 }

@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tron
 {
-    public class Program
+    public class UserInputs
     {
-        static void Main(string[] args)
-        {
-        }
     }
 }
