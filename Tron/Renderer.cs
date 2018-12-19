@@ -14,6 +14,7 @@ namespace Tron
             Console.WriteLine();
             Console.WriteLine("1. Two players mode");
             Console.WriteLine("2. AI mode");
+            Console.WriteLine("3 - Credits");
             Console.WriteLine("3. Quit");
         }
     }
