@@ -8,11 +8,25 @@ namespace Tron
 {
     public class DoubleBuffer2D<T>
     {
+        // Current buffer
         private T[,] current;
+        // Next buffer
         private T[,] next;
+
+        /// <summary>
+        /// X Dimension of the grid.
+        /// </summary>
         public int XDim { get; }
+        /// <summary>
+        /// Y Dimension of the grid.
+        /// </summary>
         public int YDim { get; }
 
+        /// <summary>
+        /// Double Buffer constructor.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public DoubleBuffer2D(int x, int y)
         {
             XDim = x;

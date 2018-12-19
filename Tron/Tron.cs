@@ -30,7 +30,7 @@ namespace Tron
             gameWorld.Swap();
         }
 
-        public void Gameloop(int msFramesPerSecond)
+        public void Gameloop(int msPerFrame)
         {
             renderer.RenderGameWorld(gameWorld);
 
@@ -39,6 +39,8 @@ namespace Tron
             {
                 // Obtain actual time in ticks
                 long start = DateTime.Now.Ticks;
+
+                GetInput();
 
                 // Update world
                 Update();
@@ -50,9 +52,14 @@ namespace Tron
 
                 // Wait until it is time for the next iteration
                 Thread.Sleep((int)
-                    (start / 10000 + msFramesPerSecond 
+                    (start / 10000 + msPerFrame
                     - DateTime.Now.Ticks / 10000));
             }
+        }
+
+        public void GetInput()
+        {
+
         }
 
         public void Update()
