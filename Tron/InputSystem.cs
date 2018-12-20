@@ -14,6 +14,8 @@ namespace Tron
 		{
 			while (true)
 			{
+                Ki = Console.ReadKey();
+
 				if (Ki.Key == ConsoleKey.W || Ki.Key == ConsoleKey.S || 
 					Ki.Key == ConsoleKey.A || Ki.Key == ConsoleKey.D)
 					OnPlayer1KeysPressed();
