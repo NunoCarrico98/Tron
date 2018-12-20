@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.28010.2036
+VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tron", "Tron\Tron.csproj", "{4BAFF2DB-A16C-4C41-8085-76B8622479A7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tron", "Tron\Tron.csproj", "{28A5A16E-BBBF-4FFC-B5F0-2614C8FE8B5E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4BAFF2DB-A16C-4C41-8085-76B8622479A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4BAFF2DB-A16C-4C41-8085-76B8622479A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4BAFF2DB-A16C-4C41-8085-76B8622479A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4BAFF2DB-A16C-4C41-8085-76B8622479A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28A5A16E-BBBF-4FFC-B5F0-2614C8FE8B5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28A5A16E-BBBF-4FFC-B5F0-2614C8FE8B5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28A5A16E-BBBF-4FFC-B5F0-2614C8FE8B5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28A5A16E-BBBF-4FFC-B5F0-2614C8FE8B5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {B28D8B11-681D-4CEA-A35E-1078388DC225}
+		SolutionGuid = {1CA03B94-4C0C-45D5-818F-F9ABF8BB5570}
 	EndGlobalSection
 EndGlobal
