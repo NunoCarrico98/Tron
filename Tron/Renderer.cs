@@ -8,7 +8,7 @@ namespace Tron
 {
 	public class Renderer
 	{
-		private readonly char stepped = '.';
+		private readonly char stepped = '*';
 		private readonly char empty = '-';
 
 		public void ShowMainMenu()
@@ -17,8 +17,8 @@ namespace Tron
 			Console.WriteLine();
 			Console.WriteLine("1. Two players mode");
 			Console.WriteLine("2. AI mode");
-			Console.WriteLine("3 - Credits");
-			Console.WriteLine("3. Quit");
+			Console.WriteLine("3. Credits");
+			Console.WriteLine("4. Quit");
 		}
 
 		public void RenderGameWorld(DoubleBuffer2D<bool> gameWorld)
@@ -32,8 +32,6 @@ namespace Tron
 				}
 				Console.WriteLine();
 			}
-			// testing purposes only
-			Console.ReadKey();
 
 			Console.SetCursorPosition(0, 0);
 		}
