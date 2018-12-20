@@ -32,9 +32,9 @@ namespace Tron
 		public void Move()
 		{
 			if (Direction == PlayerDirections.Right)
-				Column--;
-			if (Direction == PlayerDirections.Left)
 				Column++;
+			if (Direction == PlayerDirections.Left)
+				Column--;
 			if (Direction == PlayerDirections.Up)
 				Row--;
 			if (Direction == PlayerDirections.Down)

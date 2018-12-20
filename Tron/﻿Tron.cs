@@ -15,8 +15,8 @@ namespace Tron
 			// Initialize double buffer where we store the game world
 			gameWorld = new DoubleBuffer2D<bool>(xdim, ydim);
 
-			player1 = new Player(PlayerDirections.Left, 0, xdim / 2);
-			player2 = new Player(PlayerDirections.Right, ydim - 1, xdim / 2);
+			player1 = new Player(PlayerDirections.Right, 0, xdim / 2);
+			player2 = new Player(PlayerDirections.Left, ydim - 1, xdim / 2);
 
 			input.Player1KeysPressed += player1.ChangeDirection;
 			input.Player2KeysPressed += player2.ChangeDirection;
