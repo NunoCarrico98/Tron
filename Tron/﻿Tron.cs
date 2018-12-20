@@ -33,6 +33,8 @@ namespace Tron
 					gameWorld[i, j] = false;
 				}
 			}
+			gameWorld[player1.Row, player1.Column] = true;
+			gameWorld[player2.Row, player2.Column] = true;
 
 			// Swap buffer arrays so we can read values from our Double Buffer
 			gameWorld.Swap();
@@ -70,6 +72,8 @@ namespace Tron
 
 		private void MovePlayers()
 		{
+			gameWorld[player1.Row, player1.Column] = true;
+			gameWorld[player2.Row, player2.Column] = true;
 			player1.Move();
 			player2.Move();
 			gameWorld[player1.Row, player1.Column] = true;
