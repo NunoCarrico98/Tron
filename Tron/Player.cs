@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Tron
 {
@@ -9,7 +7,7 @@ namespace Tron
 		public PlayerDirections Direction { get; private set; }
 		public int Column { get; private set; }
 		public int Row { get; private set; }
-		public int Score { get; }
+		public int Score { get; private set; }
 
 		public Player(PlayerDirections direction, int column, int row)
 		{
@@ -34,18 +32,26 @@ namespace Tron
 		public void Move()
 		{
 			if (Direction == PlayerDirections.Right)
-				Column++;
-			if (Direction == PlayerDirections.Left)
 				Column--;
+			if (Direction == PlayerDirections.Left)
+				Column++;
 			if (Direction == PlayerDirections.Up)
 				Row--;
 			if (Direction == PlayerDirections.Down)
 				Row++;
 		}
 
-		public void DetectCollision(DoubleBuffer2D<bool> gameWorld)
+		public bool DetectCollision(int xdim, int ydim)
 		{
-			
+			bool lost = false;
+
+			if (Row > ydim || Row < 0)
+				lost = true;
+
+			if (Column > xdim || Column < 0)
+				lost = true;
+
+			return lost;
 		}
 	}
 }

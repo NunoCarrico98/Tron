@@ -18,6 +18,9 @@ namespace Tron
 			player1 = new Player(PlayerDirections.Left, 0, xdim / 2);
 			player2 = new Player(PlayerDirections.Right, ydim - 1, xdim / 2);
 
+			input.Player1KeysPressed += player1.ChangeDirection;
+			input.Player2KeysPressed += player2.ChangeDirection;
+
 			// Save renderer into variable
 			this.renderer = renderer;
 
@@ -45,8 +48,6 @@ namespace Tron
 				// Obtain actual time in ticks
 				long start = DateTime.Now.Ticks;
 
-				ProcessInput();
-
 				// Update world
 				Update();
 
@@ -60,11 +61,6 @@ namespace Tron
 					(start / 10000 + (int)msPerFrame
 					- DateTime.Now.Ticks / 10000));
 			}
-		}
-
-		public void ProcessInput()
-		{
-
 		}
 
 		public void Update()

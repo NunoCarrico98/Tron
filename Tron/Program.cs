@@ -21,7 +21,7 @@ namespace Tron
 			inputThread.Start();
 
 			// Start game passing a value of 50ms per frame
-			t.Gameloop(50);
+			t.Gameloop(1000);
 		}
 	}
 }
