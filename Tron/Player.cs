@@ -22,13 +22,13 @@ namespace Tron
             if (ki.Key == ConsoleKey.W || ki.Key == ConsoleKey.UpArrow)
                 if (Direction != PlayerDirections.Down)
                     Direction = PlayerDirections.Up;
-            else if (ki.Key == ConsoleKey.S || ki.Key == ConsoleKey.DownArrow)
+            if (ki.Key == ConsoleKey.S || ki.Key == ConsoleKey.DownArrow)
                 if (Direction != PlayerDirections.Up)
                     Direction = PlayerDirections.Down;
-            else if (ki.Key == ConsoleKey.A || ki.Key == ConsoleKey.LeftArrow)
+            if (ki.Key == ConsoleKey.A || ki.Key == ConsoleKey.LeftArrow)
                 if (Direction != PlayerDirections.Right)
                     Direction = PlayerDirections.Left;
-            else if (ki.Key == ConsoleKey.D || ki.Key == ConsoleKey.RightArrow)
+            if (ki.Key == ConsoleKey.D || ki.Key == ConsoleKey.RightArrow)
                 if (Direction != PlayerDirections.Left)
                     Direction = PlayerDirections.Right;
         }
