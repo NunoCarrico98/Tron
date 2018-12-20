@@ -53,8 +53,8 @@ namespace Tron
 				// Update world
 				Update();
 
-				// Swap buffer
-				gameWorld.Swap();
+                // Swap buffer
+                gameWorld.Swap();
 				// Send it to renderer
 				renderer.RenderGameWorld(gameWorld);
 
@@ -72,9 +72,9 @@ namespace Tron
 
 		private void MovePlayers()
 		{
-			gameWorld[player1.Row, player1.Column] = true;
-			gameWorld[player2.Row, player2.Column] = true;
-			player1.Move();
+            gameWorld[player1.Row, player1.Column] = true;
+            gameWorld[player2.Row, player2.Column] = true;
+            player1.Move();
 			player2.Move();
 			gameWorld[player1.Row, player1.Column] = true;
 			gameWorld[player2.Row, player2.Column] = true;

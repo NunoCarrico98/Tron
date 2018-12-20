@@ -23,17 +23,18 @@ namespace Tron
 
 		public void RenderGameWorld(DoubleBuffer2D<bool> gameWorld)
 		{
+            StringBuilder sb = new StringBuilder(gameWorld.XDim * gameWorld.YDim +
+                Environment.NewLine.Length * gameWorld.YDim);
 			for (int i = 0; i < gameWorld.XDim; i++)
 			{
 				for (int j = 0; j < gameWorld.YDim; j++)
 				{
-					Console.Write(gameWorld[i, j] ? stepped : empty);
-					Console.Write(' ');
+					sb.Append(gameWorld[i, j] ? stepped : empty);
 				}
-				Console.WriteLine();
+                sb.Append(Environment.NewLine);
 			}
-
 			Console.SetCursorPosition(0, 0);
+            Console.WriteLine(sb.ToString());
 		}
 	}
 }
