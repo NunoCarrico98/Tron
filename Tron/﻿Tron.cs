@@ -40,7 +40,8 @@ namespace Tron
 
 		public void Gameloop(object msPerFrame)
 		{
-			renderer.RenderGameWorld(gameWorld);
+			renderer.RenderGameWorld(gameWorld, player1, player2);
+			Console.ReadKey();
 
 			// Initialize game loop
 			while (true)
@@ -52,7 +53,7 @@ namespace Tron
 				Update();
 
 				// Send it to renderer
-				renderer.RenderGameWorld(gameWorld);
+				renderer.RenderGameWorld(gameWorld, player1, player2);
 
 				// Wait until it is time for the next iteration
 				Thread.Sleep((int)
@@ -64,14 +65,34 @@ namespace Tron
 		public void Update()
 		{
 			MovePlayers();
+			VerifyWin();
+			gameWorld[player1.Row, player1.Column] = true;
+			gameWorld[player2.Row, player2.Column] = true;
 		}
 
 		private void MovePlayers()
 		{
 			player1.Move();
 			player2.Move();
-			gameWorld[player1.Row, player1.Column] = true;
-			gameWorld[player2.Row, player2.Column] = true;
+		}
+
+		private void VerifyWin()
+		{
+			if (player1.DetectCollision(gameWorld) &&
+					 player2.DetectCollision(gameWorld))
+			{
+				renderer.Draw();
+			}
+			else if (player1.DetectCollision(gameWorld))
+			{
+				player2.IncreaseScore();
+				renderer.Player2Wins();
+			}
+			else if (player2.DetectCollision(gameWorld))
+			{
+				player1.IncreaseScore();
+				renderer.Player1Wins();
+			}
 		}
 	}
 }

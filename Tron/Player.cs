@@ -45,17 +45,26 @@ namespace Tron
                 Row++;
         }
 
-        public bool DetectCollision(int xdim, int ydim)
+        public bool DetectCollision(bool[,] gameWorld)
         {
             bool lost = false;
+			int xdim = gameWorld.GetLength(0);
+			int ydim = gameWorld.GetLength(1);
 
-            if (Row > ydim || Row < 0)
+            if (Row >= xdim || Row < 0)
+                lost = true;
+            if (Column >= ydim || Column < 0)
                 lost = true;
 
-            if (Column > xdim || Column < 0)
-                lost = true;
-
+			if (gameWorld[Row, Column])
+				lost = true;
+			
             return lost;
         }
+
+		public void IncreaseScore()
+		{
+			Score++;
+		}
     }
 }
