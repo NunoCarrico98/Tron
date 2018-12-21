@@ -6,14 +6,14 @@ namespace Tron
 	public class Tron
 	{
 		private Renderer renderer;
-		private DoubleBuffer2D<bool> gameWorld;
+		private bool[,] gameWorld;
 		private Player player1;
 		private Player player2;
 
 		public Tron(int xdim, int ydim, Renderer renderer, InputSystem input)
 		{
 			// Initialize double buffer where we store the game world
-			gameWorld = new DoubleBuffer2D<bool>(xdim, ydim);
+			gameWorld = new bool[xdim, ydim];
 
 			player1 = new Player(PlayerDirections.Right, 0, xdim / 2);
 			player2 = new Player(PlayerDirections.Left, ydim - 1, xdim / 2);
@@ -36,8 +36,6 @@ namespace Tron
 			gameWorld[player1.Row, player1.Column] = true;
 			gameWorld[player2.Row, player2.Column] = true;
 
-			// Swap buffer arrays so we can read values from our Double Buffer
-			gameWorld.Swap();
 		}
 
 		public void Gameloop(object msPerFrame)
@@ -53,8 +51,6 @@ namespace Tron
 				// Update world
 				Update();
 
-                // Swap buffer
-                gameWorld.Swap();
 				// Send it to renderer
 				renderer.RenderGameWorld(gameWorld);
 
@@ -72,9 +68,7 @@ namespace Tron
 
 		private void MovePlayers()
 		{
-            gameWorld[player1.Row, player1.Column] = true;
-            gameWorld[player2.Row, player2.Column] = true;
-            player1.Move();
+			player1.Move();
 			player2.Move();
 			gameWorld[player1.Row, player1.Column] = true;
 			gameWorld[player2.Row, player2.Column] = true;

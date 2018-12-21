@@ -21,13 +21,16 @@ namespace Tron
 			Console.WriteLine("4. Quit");
 		}
 
-		public void RenderGameWorld(DoubleBuffer2D<bool> gameWorld)
+		public void RenderGameWorld(bool[,] gameWorld)
 		{
-            StringBuilder sb = new StringBuilder(gameWorld.XDim * gameWorld.YDim +
-                Environment.NewLine.Length * gameWorld.YDim);
-			for (int i = 0; i < gameWorld.XDim; i++)
+			int row = gameWorld.GetLength(0);
+			int col = gameWorld.GetLength(1);
+
+            StringBuilder sb = new StringBuilder(row * col + 
+				Environment.NewLine.Length * col);
+			for (int i = 0; i < row; i++)
 			{
-				for (int j = 0; j < gameWorld.YDim; j++)
+				for (int j = 0; j < col; j++)
 				{
 					sb.Append(gameWorld[i, j] ? stepped : empty);
 				}
