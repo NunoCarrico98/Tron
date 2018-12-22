@@ -10,8 +10,13 @@ namespace Tron
 		private Player player1;
 		private Player player2;
 
+		private int xDim;
+		private int yDim;
+
 		public Tron(int xdim, int ydim, Renderer renderer, InputSystem input)
 		{
+			xDim = xdim;
+			yDim = ydim;
 			// Initialize double buffer where we store the game world
 			gameWorld = new bool[xdim, ydim];
 
@@ -24,18 +29,7 @@ namespace Tron
 			// Save renderer into variable
 			this.renderer = renderer;
 
-			// Initialize world
-			for (int i = 0; i < xdim; i++)
-			{
-				for (int j = 0; j < ydim; j++)
-				{
-					// All tiles are set to false until players step on them
-					gameWorld[i, j] = false;
-				}
-			}
-			gameWorld[player1.Row, player1.Column] = true;
-			gameWorld[player2.Row, player2.Column] = true;
-
+			CreateGameMap();
 		}
 
 		public void Gameloop(object msPerFrame)
@@ -65,9 +59,8 @@ namespace Tron
 		public void Update()
 		{
 			MovePlayers();
-			VerifyWin();
-			gameWorld[player1.Row, player1.Column] = true;
-			gameWorld[player2.Row, player2.Column] = true;
+			if (!VerifyWin())
+				UpdateWorldMap();
 		}
 
 		private void MovePlayers()
@@ -76,23 +69,60 @@ namespace Tron
 			player2.Move();
 		}
 
-		private void VerifyWin()
+		private bool VerifyWin()
 		{
+			bool endMatch = false;
 			if (player1.DetectCollision(gameWorld) &&
-					 player2.DetectCollision(gameWorld))
+				player2.DetectCollision(gameWorld))
 			{
+				endMatch = true;
 				renderer.Draw();
+				ResetGame();
 			}
 			else if (player1.DetectCollision(gameWorld))
 			{
+				endMatch = true;
 				player2.IncreaseScore();
 				renderer.Player2Wins();
+				ResetGame();
 			}
 			else if (player2.DetectCollision(gameWorld))
 			{
+				endMatch = true;
 				player1.IncreaseScore();
 				renderer.Player1Wins();
+				ResetGame();
 			}
+
+			return endMatch;
+		}
+
+		private void ResetGame()
+		{
+			CreateGameMap();
+			player1.Reset(PlayerDirections.Right, 0, xDim / 2);
+			player2.Reset(PlayerDirections.Left, yDim - 1, xDim / 2);
+		}
+		
+		private void CreateGameMap()
+		{
+			// Initialize world
+			for (int i = 0; i < xDim; i++)
+			{
+				for (int j = 0; j < yDim; j++)
+				{
+					// All tiles are set to false until players step on them
+					gameWorld[i, j] = false;
+				}
+			}
+
+			UpdateWorldMap();
+		}
+
+		private void UpdateWorldMap()
+		{
+			gameWorld[player1.Row, player1.Column] = true;
+			gameWorld[player2.Row, player2.Column] = true;
 		}
 	}
 }
