@@ -5,18 +5,26 @@ namespace Tron
 {
 	public class Tron
 	{
-		private Renderer renderer;
+        private const int MS_PER_FRAME = 100;
+
+        private InputSystem input;
+        private Thread inputThread;
+        private Renderer renderer;
 		private bool[,] gameWorld;
 		private Player player1;
 		private Player player2;
-
 		private int xDim;
 		private int yDim;
 
-		public Tron(int xdim, int ydim, Renderer renderer, InputSystem input)
+        private bool flag;
+
+		public Tron(int xdim, int ydim, Renderer renderer)
 		{
-			xDim = xdim;
+            input = new InputSystem();
+            inputThread = new Thread(input.GetUserInput);
+            xDim = xdim;
 			yDim = ydim;
+
 			// Initialize double buffer where we store the game world
 			gameWorld = new bool[xdim, ydim];
 
@@ -30,15 +38,55 @@ namespace Tron
 			this.renderer = renderer;
 
 			CreateGameMap();
-		}
+            UpdateWorldMap();
+        }
 
-		public void Gameloop(object msPerFrame)
+        public void MainMenu()
+        {
+            string input;
+
+            while (true)
+            {
+                renderer.ShowMainMenu();
+                input = Console.ReadLine();
+
+                switch (input)
+                {
+                    case "1":
+                        InitializeGame(false);
+                        break;
+                    case "2":
+                        InitializeGame(true);
+                        break;
+                    case "3":
+                        renderer.ShowCredits();
+                        break;
+                    case "4":
+                        Environment.Exit(1);
+                        break;
+                }
+            }
+        }
+
+        public void InitializeGame(bool isAI)
+        {
+            inputThread.Start();
+
+            while (true)
+            {
+                input.PauseThread = false;
+                flag = false;
+                Gameloop();
+            }
+        }
+
+		public void Gameloop()
 		{
 			renderer.RenderGameWorld(gameWorld, player1, player2);
-			Console.ReadKey();
+			Console.ReadKey(true);
 
-			// Initialize game loop
-			while (true)
+            // Initialize game loop
+            while (true)
 			{
 				// Obtain actual time in ticks
 				long start = DateTime.Now.Ticks;
@@ -46,12 +94,14 @@ namespace Tron
 				// Update world
 				Update();
 
+                if (flag) break;
+
 				// Send it to renderer
 				renderer.RenderGameWorld(gameWorld, player1, player2);
 
 				// Wait until it is time for the next iteration
 				Thread.Sleep((int)
-					(start / 10000 + (int)msPerFrame
+					(start / 10000 + MS_PER_FRAME
 					- DateTime.Now.Ticks / 10000));
 			}
 		}
@@ -59,8 +109,9 @@ namespace Tron
 		public void Update()
 		{
 			MovePlayers();
-			if (!VerifyWin())
-				UpdateWorldMap();
+            if (!VerifyWin())
+                UpdateWorldMap();
+            else flag = true;
 		}
 
 		private void MovePlayers()
@@ -75,21 +126,21 @@ namespace Tron
 			if (player1.DetectCollision(gameWorld) &&
 				player2.DetectCollision(gameWorld))
 			{
-				endMatch = true;
-				renderer.Draw();
+                endMatch = true;
+                renderer.Draw();
 				ResetGame();
 			}
 			else if (player1.DetectCollision(gameWorld))
 			{
-				endMatch = true;
-				player2.IncreaseScore();
+                endMatch = true;
+                player2.IncreaseScore();
 				renderer.Player2Wins();
 				ResetGame();
 			}
 			else if (player2.DetectCollision(gameWorld))
 			{
-				endMatch = true;
-				player1.IncreaseScore();
+                endMatch = true;
+                player1.IncreaseScore();
 				renderer.Player1Wins();
 				ResetGame();
 			}
@@ -102,7 +153,8 @@ namespace Tron
 			CreateGameMap();
 			player1.Reset(PlayerDirections.Right, xDim / 2, 0);
 			player2.Reset(PlayerDirections.Left, xDim / 2, yDim - 1);
-		}
+            UpdateWorldMap();
+        }
 		
 		private void CreateGameMap()
 		{
@@ -115,8 +167,6 @@ namespace Tron
 					gameWorld[i, j] = false;
 				}
 			}
-
-			UpdateWorldMap();
 		}
 
 		private void UpdateWorldMap()

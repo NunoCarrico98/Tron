@@ -10,9 +10,11 @@ namespace Tron
 		public event Action<ConsoleKeyInfo> Player1KeysPressed;
 		public event Action<ConsoleKeyInfo> Player2KeysPressed;
 
+        public bool PauseThread { get; set; }
+
 		public void GetUserInput()
 		{
-			while (true)
+			while (!PauseThread)
 			{
                 Ki = Console.ReadKey(true);
 

@@ -12,18 +12,14 @@ namespace Tron
 		{
 			// Render game view
 			Renderer renderer = new Renderer();
-			InputSystem input = new InputSystem();
 
 			// Initialize game with a 20x20 grid
-			Tron t = new Tron(20, 100, renderer, input);
+			Tron t = new Tron(20, 100, renderer);
 
             Console.CursorVisible = false;
 
-            Thread inputThread = new Thread(input.GetUserInput);
-			inputThread.Start();
-
-			// Start game passing a value of 50ms per frame
-			t.Gameloop(100);
+            // Start game passing a value of 50ms per frame
+            t.MainMenu();
 		}
 	}
 }

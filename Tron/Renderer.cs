@@ -13,6 +13,7 @@ namespace Tron
 
 		public void ShowMainMenu()
 		{
+            Console.Clear();
 			Console.WriteLine("----- WELCOME TO TRON -----");
 			Console.WriteLine();
 			Console.WriteLine("1. Two players mode");
@@ -21,7 +22,20 @@ namespace Tron
 			Console.WriteLine("4. Quit");
 		}
 
-		public void RenderGameWorld(bool[,] gameWorld, Player player1, Player player2)
+        public void ShowCredits()
+        {
+            Console.Clear();
+            Console.WriteLine("----- WELCOME TO TRON -----");
+            Console.WriteLine();
+            Console.WriteLine("Made by:");
+            Console.WriteLine("Nuno Carriço - https://github.com/NunoCarrico98");
+            Console.WriteLine("Rui Martins - https://github.com/rui-martins");
+            Console.WriteLine();
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+        }
+
+        public void RenderGameWorld(bool[,] gameWorld, Player player1, Player player2)
 		{
 			int row = gameWorld.GetLength(0);
 			int col = gameWorld.GetLength(1);
@@ -47,7 +61,7 @@ namespace Tron
 			Console.Clear();
 			Console.WriteLine("It's a draw!!");
 			Console.WriteLine("Press any key to play again...");
-			//Console.ReadKey();
+			Console.ReadKey();
 		}
 
 		public void Player1Wins()
