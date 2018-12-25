@@ -31,8 +31,7 @@ namespace Tron
             Console.WriteLine("Nuno Carriço - https://github.com/NunoCarrico98");
             Console.WriteLine("Rui Martins - https://github.com/rui-martins");
             Console.WriteLine();
-            Console.WriteLine("Press any key to continue...");
-            Console.ReadKey();
+            Console.WriteLine("Press ENTER to continue...");
         }
 
         public void RenderGameWorld(bool[,] gameWorld, Player player1, Player player2)
@@ -79,5 +78,10 @@ namespace Tron
 			Console.WriteLine("Press any key to play again...");
 			Console.ReadKey();
 		}
+
+        public void ShowExitMessage()
+        {
+            Console.WriteLine("Press ENTER to quit.");
+        }
 	}
 }
