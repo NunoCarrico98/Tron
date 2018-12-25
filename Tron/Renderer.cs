@@ -28,7 +28,7 @@ namespace Tron
             Console.WriteLine("----- WELCOME TO TRON -----");
             Console.WriteLine();
             Console.WriteLine("Made by:");
-            Console.WriteLine("Nuno Carriço - https://github.com/NunoCarrico98");
+            Console.WriteLine("Nuno Carriï¿½o - https://github.com/NunoCarrico98");
             Console.WriteLine("Rui Martins - https://github.com/rui-martins");
             Console.WriteLine();
             Console.WriteLine("Press ENTER to continue...");

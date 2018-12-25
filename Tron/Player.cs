@@ -4,7 +4,7 @@ namespace Tron
 {
     public class Player
     {
-        public PlayerDirections Direction { get; private set; }
+        protected PlayerDirections Direction { get; set; }
         public int Column { get; private set; }
         public int Row { get; private set; }
         public int Score { get; private set; }
@@ -17,7 +17,7 @@ namespace Tron
             Score = 0;
         }
 
-        public virtual void ChangeDirection(ConsoleKeyInfo ki)
+        public void ChangeDirection(ConsoleKeyInfo ki)
         {
             if (ki.Key == ConsoleKey.W || ki.Key == ConsoleKey.UpArrow)
                 if (Direction != PlayerDirections.Down)
@@ -33,7 +33,7 @@ namespace Tron
                     Direction = PlayerDirections.Right;
         }
 
-        public void Move()
+        public virtual void Move()
         {
             if (Direction == PlayerDirections.Right)
                 Column++;
@@ -51,12 +51,12 @@ namespace Tron
 			int xdim = gameWorld.GetLength(0);
 			int ydim = gameWorld.GetLength(1);
 
-			if (Row >= xdim || Row < 0 || Column >= ydim || Column < 0)
-				lost = true;
+            if (Row >= xdim || Row < 0 || Column >= ydim || Column < 0)
+                lost = true;
 			else if (gameWorld[Row, Column])
 				lost = true;
-
-			return lost;
+			
+            return lost;
         }
 
 		public void IncreaseScore()
