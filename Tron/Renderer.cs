@@ -47,7 +47,7 @@ namespace Tron
 			Console.Clear();
 			Console.WriteLine("It's a draw!!");
 			Console.WriteLine("Press any key to play again...");
-			Console.ReadKey();
+			//Console.ReadKey();
 		}
 
 		public void Player1Wins()

@@ -100,8 +100,8 @@ namespace Tron
 		private void ResetGame()
 		{
 			CreateGameMap();
-			player1.Reset(PlayerDirections.Right, 0, xDim / 2);
-			player2.Reset(PlayerDirections.Left, yDim - 1, xDim / 2);
+			player1.Reset(PlayerDirections.Right, xDim / 2, 0);
+			player2.Reset(PlayerDirections.Left, xDim / 2, yDim - 1);
 		}
 		
 		private void CreateGameMap()
