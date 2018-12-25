@@ -10,7 +10,7 @@ namespace Tron
 		private bool[] isStepped;
 		private Random rnd = new Random();
 
-		public AI(bool[,] gameWorld,int xDim, int yDim, PlayerDirections direction, int column, int row)
+		public AI(bool[,] gameWorld, int xDim, int yDim, PlayerDirections direction, int column, int row)
 			: base(direction, column, row)
 		{
 			this.xDim = xDim;
@@ -43,40 +43,49 @@ namespace Tron
 
 		private void CheckNeighours()
 		{
-			// up left
-			if (gameWorld[Row - 1, Column - 1])
-				isStepped[0] = true;
-			// left
-			if (gameWorld[Row, Column - 1])
-				isStepped[1] = true;
-			// down left
-			if (gameWorld[Row + 1, Column - 1])
-				isStepped[2] = true;
-			// down left
-			if (gameWorld[Row - 1, Column])
-				isStepped[3] = true;
+			// Up/Left of current position
+			if (CheckIfWithinBounds(Row - 1, Column - 1))
+				if (gameWorld[Row - 1, Column - 1])
+					isStepped[0] = true;
+			// Left of current position
+			if (CheckIfWithinBounds(Row, Column - 1))
+				if (gameWorld[Row, Column - 1])
+					isStepped[1] = true;
+			// Down/Left of current position
+			if (CheckIfWithinBounds(Row + 1, Column - 1))
+				if (gameWorld[Row + 1, Column - 1])
+					isStepped[2] = true;
+			// Up of current position
+			if (CheckIfWithinBounds(Row - 1, Column))
+				if (gameWorld[Row - 1, Column])
+					isStepped[3] = true;
 			// AI Player
-			if (gameWorld[Row, Column])
-				isStepped[4] = true;
-			// down
-			if (gameWorld[Row + 1, Column])
-				isStepped[5] = true;
-			// up right
-			if (gameWorld[Row - 1, Column + 1])
-				isStepped[6] = true;
-			// right
-			if (gameWorld[Row, Column + 1])
-				isStepped[7] = true;
-			// down right
-			if (gameWorld[Row + 1, Column + 1])
-				isStepped[8] = true;
+			if (CheckIfWithinBounds(Row, Column))
+				if (gameWorld[Row, Column])
+					isStepped[4] = true;
+			// Down of current position
+			if (CheckIfWithinBounds(Row + 1, Column))
+				if (gameWorld[Row + 1, Column])
+					isStepped[5] = true;
+			// Up/Right of current position
+			if (CheckIfWithinBounds(Row - 1, Column + 1))
+				if (gameWorld[Row - 1, Column + 1])
+					isStepped[6] = true;
+			// Right of current position
+			if (CheckIfWithinBounds(Row, Column + 1))
+				if (gameWorld[Row, Column + 1])
+					isStepped[7] = true;
+			// Down/Right of current position
+			if (CheckIfWithinBounds(Row + 1, Column + 1))
+				if (gameWorld[Row + 1, Column + 1])
+					isStepped[8] = true;
 		}
 
 		private void CheckDirectionLeft()
 		{
-			// if left is stepped
+			// If Left is stepped
 			if (isStepped[1])
-				// if up/left and down/left are stepped
+				// If Up/Left and Down/Left are stepped
 				if (isStepped[0] && isStepped[2])
 				{
 					// Random chance to turn up or down
@@ -85,25 +94,25 @@ namespace Tron
 					else
 						Direction = PlayerDirections.Down;
 				}
-				// if up/left is stepped
+				// If Up/Left is stepped
 				else if (isStepped[0])
 					Direction = PlayerDirections.Down;
-				// if down/left is stepped
+				// If Down/Left is stepped
 				else if (isStepped[2])
 					Direction = PlayerDirections.Up;
-				// if up is stepped
+				// If Up is stepped
 				else if (isStepped[3])
 					Direction = PlayerDirections.Down;
-				// if down is stepped
+				// If Down is stepped
 				else if (isStepped[5])
 					Direction = PlayerDirections.Up;
 		}
 
 		private void CheckDirectionRight()
 		{
-			// if right is stepped
+			// If Right is stepped
 			if (isStepped[7])
-				// if up/right and down/right are stepped
+				// If Up/Right and Down/Right are stepped
 				if (isStepped[6] && isStepped[8])
 				{
 					// Random chance to turn up or down
@@ -112,25 +121,25 @@ namespace Tron
 					else
 						Direction = PlayerDirections.Down;
 				}
-				// if up/right is stepped
+				// If Up/Right is stepped
 				else if (isStepped[6])
 					Direction = PlayerDirections.Down;
-				// if down/right is stepped
+				// If Down/Right is stepped
 				else if (isStepped[8])
 					Direction = PlayerDirections.Up;
-				// if up is stepped
+				// If Up is stepped
 				else if (isStepped[3])
 					Direction = PlayerDirections.Down;
-				// if down is stepped
+				// If Down is stepped
 				else if (isStepped[5])
 					Direction = PlayerDirections.Up;
 		}
 
 		private void CheckDirectionUp()
 		{
-			// if up is stepped
+			// If Up is stepped
 			if (isStepped[3])
-				// if up/left and up/right are stepped
+				// If Up/Left and Up/Right are stepped
 				if (isStepped[0] && isStepped[6])
 				{
 					// Random chance to turn up or down
@@ -139,25 +148,25 @@ namespace Tron
 					else
 						Direction = PlayerDirections.Right;
 				}
-				// if up/left is stepped
+				// If Up/Left is stepped
 				else if (isStepped[0])
 					Direction = PlayerDirections.Right;
-				// if up/right is stepped
+				// If Up/Right is stepped
 				else if (isStepped[2])
 					Direction = PlayerDirections.Left;
-				// if left is stepped
+				// If Left is stepped
 				else if (isStepped[1])
 					Direction = PlayerDirections.Right;
-				// if right is stepped
+				// If Right is stepped
 				else if (isStepped[7])
 					Direction = PlayerDirections.Left;
 		}
 
 		private void CheckDirectionDown()
 		{
-			// if up is stepped
+			// If Up is stepped
 			if (isStepped[5])
-				// if down/left and down/right are stepped
+				// If Down/Left and Down/Right are stepped
 				if (isStepped[2] && isStepped[8])
 				{
 					// Random chance to turn up or down
@@ -166,23 +175,24 @@ namespace Tron
 					else
 						Direction = PlayerDirections.Right;
 				}
-				// if down/left is stepped
+				// If Down/Left is stepped
 				else if (isStepped[2])
 					Direction = PlayerDirections.Right;
-				// if down/right is stepped
+				// If Down/Right is stepped
 				else if (isStepped[8])
 					Direction = PlayerDirections.Left;
-				// if left is stepped
+				// If Left is stepped
 				else if (isStepped[1])
 					Direction = PlayerDirections.Right;
-				// if right is stepped
+				// If Right is stepped
 				else if (isStepped[7])
 					Direction = PlayerDirections.Left;
 		}
 
-		private bool CheckIfWithinBounds()
+		private bool CheckIfWithinBounds(int row, int column)
 		{
-			if (Row >=  xDim || Row < 0 || Column >= yDim || Column < 0)
+			// If positions to check is not inside the level
+			if (row >= xDim || row < 0 || column >= yDim || column < 0)
 				return false;
 			else return true;
 		}
