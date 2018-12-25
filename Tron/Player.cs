@@ -70,5 +70,10 @@ namespace Tron
 			Row = row;
 			Column = col;
 		}
+
+        public void ResetScore()
+        {
+            Score = 0;
+        }
     }
 }

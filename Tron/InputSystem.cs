@@ -5,7 +5,7 @@ namespace Tron
 {
 	public class InputSystem
 	{
-		private ConsoleKeyInfo Ki { get; set; }
+		public ConsoleKeyInfo Ki { get; private set; }
 
 		public event Action<ConsoleKeyInfo> Player1KeysPressed;
 		public event Action<ConsoleKeyInfo> Player2KeysPressed;
@@ -23,10 +23,13 @@ namespace Tron
 				if (Ki.Key == ConsoleKey.UpArrow || Ki.Key == ConsoleKey.DownArrow ||
 					Ki.Key == ConsoleKey.LeftArrow || Ki.Key == ConsoleKey.RightArrow)
 					OnPlayer2KeysPressed();
-
-				if (Ki.Key == ConsoleKey.Escape) break;
 			}
 		}
+
+        public void ResetUserInput()
+        {
+            Ki = default(ConsoleKeyInfo);
+        }
 
 		protected virtual void OnPlayer1KeysPressed()
 		{
