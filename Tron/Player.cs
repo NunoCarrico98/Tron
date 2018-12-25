@@ -64,7 +64,7 @@ namespace Tron
 			Score++;
 		}
 
-		public void Reset(PlayerDirections direction, int row, int col)
+		public virtual void Reset(PlayerDirections direction, int row, int col)
 		{
 			Direction = direction;
 			Row = row;
