@@ -89,7 +89,7 @@ namespace Tron
             Console.WriteLine();
             CenterCursor(30, 2);
             Console.WriteLine("Double tap any key to continue.");
-            Console.ReadKey();
+            Console.ReadKey(true);
         }
 
 		public void Player1Wins()
@@ -100,7 +100,7 @@ namespace Tron
             Console.WriteLine();
             CenterCursor(30, 2);
             Console.WriteLine("Double tap any key to continue.");
-            Console.ReadKey();
+            Console.ReadKey(true);
 		}
 
 		public void Player2Wins()
@@ -111,7 +111,7 @@ namespace Tron
             Console.WriteLine();
             CenterCursor(30, 2);
             Console.WriteLine("Double tap any key to continue.");
-            Console.ReadKey();
+            Console.ReadKey(true);
         }
 
         public void MatchCountdown()
