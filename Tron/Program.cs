@@ -14,12 +14,12 @@ namespace Tron
             // EXCELLENT GAMEPLAY
             //    |
             //    V
-            //Console.SetWindowSize(160, 45);
+            Console.SetWindowSize(160, 45);
 
             // TESTING PURPOSES
             //    |
             //    V
-            Console.SetWindowSize(70, 20);
+            //Console.SetWindowSize(70, 20);
 
             // Render game view
             Renderer renderer = new Renderer();

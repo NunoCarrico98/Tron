@@ -17,7 +17,8 @@ namespace Tron
 			Console.WriteLine("1. Two players mode");
 			Console.WriteLine("2. AI mode");
 			Console.WriteLine("3. Credits");
-			Console.WriteLine("4. Quit");
+			Console.WriteLine("4. Controls");
+			Console.WriteLine("5. Quit");
 		}
 
         public void ShowCredits()
@@ -26,11 +27,30 @@ namespace Tron
             Console.WriteLine("----- WELCOME TO TRON -----");
             Console.WriteLine();
             Console.WriteLine("Made by:");
-            Console.WriteLine("Nuno Carri�o - https://github.com/NunoCarrico98");
+            Console.WriteLine("Nuno Carriço - https://github.com/NunoCarrico98");
             Console.WriteLine("Rui Martins - https://github.com/rui-martins");
             Console.WriteLine();
             Console.WriteLine("Press ENTER to continue...");
         }
+
+		public void ShowControls()
+		{
+			Console.Clear();
+			Console.WriteLine("----- WELCOME TO TRON -----");
+			Console.WriteLine();
+			Console.WriteLine("Controls:");
+			Console.WriteLine();
+			Console.WriteLine("   Player 1                      Player 2");
+			Console.WriteLine("> W - Move Up              > Up Arrow - Move Up");
+			Console.WriteLine("> S - Move Down            > Down Arrow - Move Up");
+			Console.WriteLine("> A - Move Left            > Left Arrow - Move Up");
+			Console.WriteLine("> D - Move Right           > Right Arrow - Move Up");
+			Console.WriteLine();
+			Console.WriteLine("If playing in singleplayer mode, the player 1 " +
+				"controls are the default.");
+			Console.WriteLine();
+			Console.WriteLine("Press ENTER to continue...");
+		}
 
         public void RenderGameWorld(bool[,] gameWorld, Player player1, Player player2)
 		{

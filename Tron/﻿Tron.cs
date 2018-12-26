@@ -74,7 +74,12 @@ namespace Tron
                             input.ResetUserInput();
                             flag = true;
                             break;
-                        case ConsoleKey.D4:
+						case ConsoleKey.D4:
+							renderer.ShowControls();
+							input.ResetUserInput();
+							flag = true;
+							break;
+                        case ConsoleKey.D5:
                             bool[] eventsContent = input.CheckEvents();
                             if (eventsContent[0])
                                 input.Player1KeysPressed -= player1.ChangeDirection;
