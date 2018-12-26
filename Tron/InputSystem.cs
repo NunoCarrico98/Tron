@@ -31,6 +31,16 @@ namespace Tron
             Ki = default(ConsoleKeyInfo);
         }
 
+        public bool[] CheckEvents()
+        {
+            bool[] eventsContent = new bool[2];
+
+            if (Player1KeysPressed != null) eventsContent[0] = true;
+            if (Player2KeysPressed != null) eventsContent[1] = true;
+
+            return eventsContent;
+        }
+
 		protected virtual void OnPlayer1KeysPressed()
 		{
 			Player1KeysPressed?.Invoke(Ki);

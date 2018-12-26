@@ -10,13 +10,16 @@ namespace Tron
 	{
 		static void Main(string[] args)
 		{
-			// Render game view
-			Renderer renderer = new Renderer();
+            Console.SetWindowSize(160, 45);
+
+            // Render game view
+            Renderer renderer = new Renderer();
             InputSystem input = new InputSystem();
             Thread inputThread = new Thread(input.GetUserInput);
 
-			// Initialize game with a 100x20 grid
-			Tron t = new Tron(20, 100, renderer, input);
+            // Initialize game
+            Tron t = new Tron(Console.WindowHeight - 6, Console.WindowWidth - 1, 
+                renderer, input);
 
             Console.CursorVisible = false;
 

@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace Tron
 {
@@ -55,29 +53,59 @@ namespace Tron
             Console.WriteLine(sb.ToString());
 		}
 
+        public void CenterCursor(int strLength, int paragraphs)
+        {
+            int cursorLeft = (Console.WindowWidth / 2) - (strLength / 2);
+            int cursorTop = (Console.WindowHeight / 2) + paragraphs;
+            Console.SetCursorPosition(cursorLeft, cursorTop);
+        }
+
 		public void Draw()
-		{
-			Console.Clear();
-			Console.WriteLine("It's a draw!!");
-			Console.WriteLine("Press any key to play again...");
-			Console.ReadKey();
-		}
+        {
+            Console.Clear();
+            CenterCursor(12, 0);
+            Console.WriteLine("It's a draw!!");
+            Console.WriteLine();
+            CenterCursor(30, 2);
+            Console.WriteLine("Double tap any key to continue.");
+            Console.ReadKey();
+        }
 
 		public void Player1Wins()
-		{
-			Console.Clear();
-			Console.WriteLine("Player 1 Wins!!");
-			Console.WriteLine("Press any key to play again...");
-			Console.ReadKey();
+        {
+            Console.Clear();
+            CenterCursor(14, 0);
+            Console.WriteLine("Player 1 Wins!!");
+            Console.WriteLine();
+            CenterCursor(30, 2);
+            Console.WriteLine("Double tap any key to continue.");
+            Console.ReadKey();
 		}
 
 		public void Player2Wins()
 		{
-			Console.Clear();
-			Console.WriteLine("Player 2 Wins!!");
-			Console.WriteLine("Press any key to play again...");
-			Console.ReadKey();
-		}
+            Console.Clear();
+            CenterCursor(14, 0);
+            Console.WriteLine("Player 2 Wins!!");
+            Console.WriteLine();
+            CenterCursor(30, 2);
+            Console.WriteLine("Double tap any key to continue.");
+            Console.ReadKey();
+        }
+
+        public void MatchCountdown()
+        {
+            int cursorLeft = Console.BufferWidth / 2;
+            int cursorTop = Console.CursorTop;
+            for (int i = 3; i >= 1; i--)
+            {
+                Console.SetCursorPosition(cursorLeft, cursorTop);
+                Console.Write(i);
+                Thread.Sleep(800);
+            }
+            Console.SetCursorPosition(cursorLeft, cursorTop);
+            Console.Write(" ");
+        }
 
         public void ShowExitMessage()
         {
