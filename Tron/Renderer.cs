@@ -6,7 +6,7 @@ namespace Tron
 {
 	public class Renderer
 	{
-		private readonly char stepped = '*';
+		private readonly char stepped = '■';
 		private readonly char empty = '-';
 
 		public void ShowMainMenu()
@@ -59,13 +59,14 @@ namespace Tron
 
             StringBuilder sb = new StringBuilder(row * col + 
 				(Environment.NewLine.Length *2) * col);
-			sb.Append($"Player 1 - {player1.Score}   ||   Player 2 - {player2.Score}");
+			sb.Append($"Player 1 - {player1.Score}     ||     Player 2 - {player2.Score}");
 			sb.Append(Environment.NewLine);
 			for (int i = 0; i < row; i++)
 			{
 				for (int j = 0; j < col; j++)
 				{
 					sb.Append(gameWorld[i, j] ? stepped : empty);
+					sb.Append(" ");
 				}
                 sb.Append(Environment.NewLine);
 			}

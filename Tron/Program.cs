@@ -10,10 +10,10 @@ namespace Tron
 	{
 		static void Main(string[] args)
 		{
-            // THESE ARE THE CORRECT VALUES FOR AN
-            // EXCELLENT GAMEPLAY
-            //    |
-            //    V
+			// THESE ARE THE CORRECT VALUES FOR AN
+			// EXCELLENT GAMEPLAY
+			//    |
+			//    V
             Console.SetWindowSize(160, 45);
 
             // TESTING PURPOSES
@@ -27,7 +27,7 @@ namespace Tron
             Thread inputThread = new Thread(input.GetUserInput);
 
             // Initialize game
-            Tron t = new Tron(Console.WindowHeight - 6, Console.WindowWidth - 1, 
+            Tron t = new Tron(Console.WindowHeight - 6, Console.WindowWidth/2 - 1, 
                 renderer, input);
 
             Console.CursorVisible = false;
