@@ -7,7 +7,7 @@ namespace Tron
 	public class Renderer
 	{
 		private readonly char stepped = '■';
-		private readonly char empty = '-';
+		private readonly char empty = '.';
 
 		public void ShowMainMenu()
 		{
