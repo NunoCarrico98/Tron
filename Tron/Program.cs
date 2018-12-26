@@ -10,7 +10,16 @@ namespace Tron
 	{
 		static void Main(string[] args)
 		{
-            Console.SetWindowSize(160, 45);
+            // THESE ARE THE CORRECT VALUES FOR AN
+            // EXCELLENT GAMEPLAY
+            //    |
+            //    V
+            //Console.SetWindowSize(160, 45);
+
+            // TESTING PURPOSES
+            //    |
+            //    V
+            Console.SetWindowSize(70, 20);
 
             // Render game view
             Renderer renderer = new Renderer();
