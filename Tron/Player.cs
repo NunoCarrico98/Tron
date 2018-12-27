@@ -127,8 +127,8 @@ namespace Tron
 		/// Method to reset player properties.
 		/// </summary>
 		/// <param name="direction">Initial player direction.</param>
-		/// <param name="row">Initial player column.</param>
-		/// <param name="col">Initial player row.</param>
+		/// <param name="row">Initial player row.</param>
+		/// <param name="col">Initial player column.</param>
 		public virtual void Reset(PlayerDirections direction, int row, int col)
 		{
 			// Reset player properties

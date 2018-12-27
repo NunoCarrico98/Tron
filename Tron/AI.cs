@@ -2,22 +2,37 @@ using System;
 
 namespace Tron
 {
+	/// <summary>
+	/// Class that controls the AI player.
+	/// </summary>
     public class AI : Player
     {
+		/// <summary>
+		/// Reference to the game world.
+		/// </summary>
         private readonly bool[,] gameWorld;
+		/// <summary>
+		/// X size of the game world.
+		/// </summary>
         private readonly int xDim;
-        private readonly int yDim;
-        private bool[] isStepped;
+		/// <summary>
+		/// X size of the game world.
+		/// </summary>
+		private readonly int yDim;
+		/// <summary>
+		/// Array that saves if the positions next to the AI are stepped
+		/// </summary>
+		private bool[] isStepped;
         private Random rnd = new Random();
 
         public AI(bool[,] gameWorld, int xDim, int yDim, PlayerDirections direction, int column, int row)
             : base(direction, column, row)
         {
+			/// Initialise references to world and x and y sizes
             this.xDim = xDim;
             this.yDim = yDim;
             this.gameWorld = gameWorld;
 
-            // Array that saves if the positions next to the AI are stepped
             // Array positions corresponding to the verification array
             // isStepped[0] = up left
             // isStepped[1] = left
@@ -31,16 +46,25 @@ namespace Tron
             isStepped = new bool[9];
         }
 
+		/// <summary>
+		/// Override the Move method from Player so AI can change directions.
+		/// </summary>
         public override void Move()
         {
             ChangeDirection();
             base.Move();
         }
 
+		/// <summary>
+		/// Method that changes AI player Direction.
+		/// </summary>
         public void ChangeDirection()
         {
+			// Reset isStepped Array
             ResetCheckArray();
+			// Check if there neighbour tiles are stepped
             CheckNearestEnemies();
+			// Change Direction according to the neighbours that surround the AI
             if (Direction == PlayerDirections.Left) CheckDirectionLeft();
             if (Direction == PlayerDirections.Right) CheckDirectionRight();
             if (Direction == PlayerDirections.Up) CheckDirectionUp();
@@ -166,6 +190,9 @@ namespace Tron
             return value;
         }
 
+		/// <summary>
+		/// Check neibours and change direction when current direction is Left.
+		/// </summary>
         private void CheckDirectionLeft()
         {
             // If Left is stepped
@@ -201,11 +228,16 @@ namespace Tron
             }
             else
             {
+				// If there is no front obstacles, there is a chance that the 
+				// AI will change direction randomly
                 SetRandomDirectionUpOrDown();
             }
         }
 
-        private void CheckDirectionRight()
+		/// <summary>
+		/// Check neibours and change direction when current direction is Right.
+		/// </summary>
+		private void CheckDirectionRight()
         {
             // If Right is stepped
             if (isStepped[7])
@@ -240,11 +272,16 @@ namespace Tron
             }
             else
             {
-                SetRandomDirectionUpOrDown();
+				// If there is no front obstacles, there is a chance that the 
+				// AI will change direction randomly
+				SetRandomDirectionUpOrDown();
             }
         }
 
-        private void CheckDirectionUp()
+		/// <summary>
+		/// Check neibours and change direction when current direction is Up.
+		/// </summary>
+		private void CheckDirectionUp()
         {
             // If Up is stepped
             if (isStepped[3])
@@ -279,11 +316,16 @@ namespace Tron
             }
             else
             {
-                SetRandomDirectionLeftOrRight();
+				// If there is no front obstacles, there is a chance that the 
+				// AI will change direction randomly
+				SetRandomDirectionLeftOrRight();
             }
         }
 
-        private void CheckDirectionDown()
+		/// <summary>
+		/// Check neibours and change direction when current direction is Down.
+		/// </summary>
+		private void CheckDirectionDown()
         {
             // If Down is stepped
             if (isStepped[5])
@@ -318,10 +360,19 @@ namespace Tron
             }
             else
             {
-                SetRandomDirectionLeftOrRight();
+				// If there is no front obstacles, there is a chance that the 
+				// AI will change direction randomly
+				SetRandomDirectionLeftOrRight();
             }
         }
 
+		/// <summary>
+		/// Method that verifies if certain coordinates are within the game world.
+		/// </summary>
+		/// <param name="row">Row to check.</param>
+		/// <param name="column">Column to check.</param>
+		/// <param name="i">Current isStepped member being verified.</param>
+		/// <returns>Returns true if is within bounds.</returns>
         private bool CheckIfWithinBounds(int row, int column, int i)
         {
             // If positions to check is not inside the level
@@ -333,14 +384,23 @@ namespace Tron
             else return true;
         }
 
+		/// <summary>
+		/// Method that sets a random direction according to a certain probability.
+		/// </summary>
+		/// <param name="dir1">One of the possible Directions.</param>
+		/// <param name="dir2">Other Direction.</param>
         private void SetRandomDirection(PlayerDirections dir1, PlayerDirections dir2)
         {
+			// Probability to change direction is 5% for each direction 
             if (rnd.NextDouble() <= 0.05f)
                 Direction = dir1;
             else if (rnd.NextDouble() <= 0.05f)
                 Direction = dir2;
         }
 
+		/// <summary>
+		/// Method that sets the direction randomly to Left or Right.
+		/// </summary>
         private void SetRandomDirectionLeftOrRight()
         {
             // If Left and Right is stepped
@@ -356,7 +416,10 @@ namespace Tron
                 SetRandomDirection(PlayerDirections.Left, PlayerDirections.Right);
         }
 
-        private void SetRandomDirectionUpOrDown()
+		/// <summary>
+		/// Method that sets the direction randomly to Up or Down.
+		/// </summary>
+		private void SetRandomDirectionUpOrDown()
         {
             // If Up and Down is stepped
             if (isStepped[3] && isStepped[5])
@@ -371,13 +434,23 @@ namespace Tron
                 SetRandomDirection(PlayerDirections.Up, PlayerDirections.Down);
         }
 
-        private void ResetCheckArray()
+		/// <summary>
+		/// Reset the array that saves if the positions next to the AI are stepped.
+		/// </summary>
+		private void ResetCheckArray()
         {
             for (int i = 0; i < isStepped.Length; i++)
                 isStepped[i] = false;
         }
 
-        public override void Reset(PlayerDirections direction, int row, int col)
+		/// <summary>
+		/// Override the Reset Method from the player to be able to reset the 
+		/// isStepped array.
+		/// </summary>
+		/// <param name="direction">Initial player direction.</param>
+		/// <param name="row">Initial player row.</param>
+		/// <param name="col">Initial player column.</param>
+		public override void Reset(PlayerDirections direction, int row, int col)
         {
             base.Reset(direction, row, col);
             ResetCheckArray();
