@@ -71,15 +71,29 @@ namespace Tron
             if (Direction == PlayerDirections.Down) CheckDirectionDown();
         }
 
+        /// <summary>
+        /// Method that checks for the nearest 
+        /// enemies in the direction the player is headed.
+        /// </summary>
         private void CheckNearestEnemies()
         {
+            // Maximum number of tiles to check ahead of the player position
             int numOfTiles = 15;
+
+            // Vars that receive a value depending on the actual direction, 
+            // allowing us to move across the array.
             int rowValue = 0;
             int colValue = 0;
-            int actualRow = 0;
-            int actualCol = 0;
+
+            // Vars that receive the actual row / column we're searching on
+            // The default is the tile we're on
+            int actualRow = Row;
+            int actualCol = Column;
+
+            // Flag that breaks the cycle once we find an enemy tile
             bool flag = false;
 
+            // Set the row and column values according to the actual direction
             switch (Direction)
             {
                 case PlayerDirections.Left:
@@ -100,21 +114,30 @@ namespace Tron
                     break;
             }
 
-            actualRow = Row;
-            actualCol = Column;
-
+            // Cycle until our maximum number of tiles is reached
             for (int i = 0; i < numOfTiles; i++)
             {
+                // If flag is true, break out of cycle because we have found an enemy
                 if (flag) break;
+
+                // Flag receives false or true, depending if we have found an enemy
                 flag = CheckNeighbours(actualRow, actualCol);
 
+                // Receive the values of our next tile to check
                 actualRow += rowValue;
                 actualCol += colValue;
             }
         }
 
+        /// <summary>
+        /// Method that checks our nearest neighbours.
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="col"></param>
+        /// <returns>Returns true if an enemy is found, false if not.</returns>
         private bool CheckNeighbours(int row, int col)
         {
+            // Var that holds value to return
             bool value = false;
 
             // Up/Left of current position
@@ -150,14 +173,21 @@ namespace Tron
                 if (gameWorld[row + 1, col + 1])
                     isStepped[8] = true;
 
+            // Receive true or false, depending if enemy is found
             value = IsEnemyNearby();
+
+            // Return value
             return value;
         }
 
         private bool IsEnemyNearby()
         {
+            // Var to hold value to return
             bool value = false;
 
+            // If current direction is left, we only care about the enemies
+            // on top, down, up/left, left and down/left
+            // If any of these positions are true, set value to true
             if (Direction == PlayerDirections.Left)
                 value = Array.Exists(isStepped, x =>
                 x == true && x == isStepped[0] ||
@@ -165,6 +195,9 @@ namespace Tron
                 x == true && x == isStepped[2] ||
                 x == true && x == isStepped[3] ||
                 x == true && x == isStepped[5]);
+            // If current direction is right, we only care about the enemies
+            // on top, down, up/right, right and down/right
+            // If any of these positions are true, set value to true
             else if (Direction == PlayerDirections.Right)
                 value = Array.Exists(isStepped, x =>
                 x == true && x == isStepped[3] ||
@@ -172,6 +205,9 @@ namespace Tron
                 x == true && x == isStepped[6] ||
                 x == true && x == isStepped[7] ||
                 x == true && x == isStepped[8]);
+            // If current direction is up, we only care about the enemies
+            // on top/left, left, top, right/top, right
+            // If any of these positions are true, set value to true
             else if (Direction == PlayerDirections.Up)
                 value = Array.Exists(isStepped, x =>
                 x == true && x == isStepped[0] ||
@@ -179,6 +215,9 @@ namespace Tron
                 x == true && x == isStepped[3] ||
                 x == true && x == isStepped[6] ||
                 x == true && x == isStepped[7]);
+            // If current direction is down, we only care about the enemies
+            // on left, down/left, down, right, down/right
+            // If any of these positions are true, set value to true
             else if (Direction == PlayerDirections.Down)
                 value = Array.Exists(isStepped, x =>
                 x == true && x == isStepped[1] ||
@@ -187,6 +226,7 @@ namespace Tron
                 x == true && x == isStepped[7] ||
                 x == true && x == isStepped[8]);
 
+            // Return value
             return value;
         }
 
