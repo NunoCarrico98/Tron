@@ -68,7 +68,7 @@ A whole restructure had to be done along with all the inputs (menus and such) al
 we would have to press keys two times each time we wanted a simple `Console.ReadKey()`.
 
 We tried to do a very simple AI as an extra (it it dumb sometimes but it also surprises you).
-We also tried made some music but later discovered that audio is not supported in `NetCore App`.
+We also made some music but later discovered that audio is not supported in `NetCore App`.
 
 Despite being simple, it expanded our knowledge to how games really work and it was very fun to do.
 We both worked equally hard which was a key factor to have everything ready in time.
