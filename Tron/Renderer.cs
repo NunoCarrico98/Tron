@@ -4,11 +4,23 @@ using System.Threading;
 
 namespace Tron
 {
+	/// <summary>
+	/// Class that renders everything on screen.
+	/// </summary>
 	public class Renderer
 	{
+		/// <summary>
+		/// Constant char representing a stepped tile
+		/// </summary>
 		private readonly char stepped = '■';
+		/// <summary>
+		/// Constant char representing an empty tile
+		/// </summary>
 		private readonly char empty = '.';
 
+		/// <summary>
+		/// Method to render the Main Menu
+		/// </summary>
 		public void ShowMainMenu()
 		{
             Console.Clear();
@@ -21,6 +33,9 @@ namespace Tron
 			Console.WriteLine("5. Quit");
 		}
 
+		/// <summary>
+		/// Method to render the credits
+		/// </summary>
         public void ShowCredits()
         {
             Console.Clear();
@@ -33,6 +48,9 @@ namespace Tron
             Console.WriteLine("Press ENTER to continue...");
         }
 
+		/// <summary>
+		/// Method to render the control info
+		/// </summary>
 		public void ShowControls()
 		{
 			Console.Clear();
@@ -52,28 +70,49 @@ namespace Tron
 			Console.WriteLine("Press ENTER to continue...");
 		}
 
+		/// <summary>
+		/// Method to render the level.
+		/// </summary>
+		/// <param name="gameWorld">Current state of level.</param>
+		/// <param name="player1">Player 1.</param>
+		/// <param name="player2">Player 2.</param>
         public void RenderGameWorld(bool[,] gameWorld, Player player1, Player player2)
 		{
+			// Get x and y size of the world
 			int row = gameWorld.GetLength(0);
 			int col = gameWorld.GetLength(1);
 
+			// Create a stringbuilder with a specific size to efficiently 
+			// join string elements
             StringBuilder sb = new StringBuilder(row * col + 
 				(Environment.NewLine.Length *2) * col);
+			// Join player Scores to stringbuilder
 			sb.Append($"Player 1 - {player1.Score}     ||     Player 2 - {player2.Score}");
 			sb.Append(Environment.NewLine);
+
+			// Join the current state of the gameworld to stringbuilder
 			for (int i = 0; i < row; i++)
 			{
 				for (int j = 0; j < col; j++)
 				{
+					// If current checked tile is true, render 'stepped'. 
+					// Otherwise, render 'empty'.
 					sb.Append(gameWorld[i, j] ? stepped : empty);
 					sb.Append(" ");
 				}
                 sb.Append(Environment.NewLine);
 			}
 			Console.SetCursorPosition(0, 0);
+
+			// Render stringbuider to console
             Console.WriteLine(sb.ToString());
 		}
 
+		/// <summary>
+		/// Method to center the cursor
+		/// </summary>
+		/// <param name="strLength">String lenght.</param>
+		/// <param name="paragraphs">Number of paraghaphs</param>
         public void CenterCursor(int strLength, int paragraphs)
         {
             int cursorLeft = (Console.WindowWidth / 2) - (strLength / 2);
@@ -81,7 +120,10 @@ namespace Tron
             Console.SetCursorPosition(cursorLeft, cursorTop);
         }
 
-		public void Draw()
+		/// <summary>
+		/// Method that renders the message in case of a draw.
+		/// </summary>
+		public void RenderDraw()
         {
             Console.Clear();
             CenterCursor(12, 0);
@@ -92,7 +134,10 @@ namespace Tron
             Console.ReadKey(true);
         }
 
-		public void Player1Wins()
+		/// <summary>
+		/// Method that renders the message in case player 1 wins.
+		/// </summary>
+		public void RenderPlayer1Wins()
         {
             Console.Clear();
             CenterCursor(14, 0);
@@ -103,7 +148,10 @@ namespace Tron
             Console.ReadKey(true);
 		}
 
-		public void Player2Wins()
+		/// <summary>
+		/// Method that renders the message in case player 2 wins.
+		/// </summary>
+		public void RenderPlayer2Wins()
 		{
             Console.Clear();
             CenterCursor(14, 0);
@@ -114,7 +162,10 @@ namespace Tron
             Console.ReadKey(true);
         }
 
-        public void MatchCountdown()
+		/// <summary>
+		/// Render the match countdown.
+		/// </summary>
+        public void RenderMatchCountdown()
         {
             int cursorLeft = Console.BufferWidth / 2;
             int cursorTop = Console.CursorTop;

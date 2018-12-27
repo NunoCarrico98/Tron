@@ -126,7 +126,7 @@ namespace Tron
         public void Gameloop()
         {
             renderer.RenderGameWorld(gameWorld, player1, player2);
-            renderer.MatchCountdown();
+            renderer.RenderMatchCountdown();
 
             // Initialize game loop
             while (true)
@@ -177,28 +177,28 @@ namespace Tron
             if (player1.Row == player2.Row && player1.Column == player2.Column)
             {
                 endMatch = true;
-                renderer.Draw();
+                renderer.RenderDraw();
                 ResetGame();
             }
             else if (player1.DetectCollision(gameWorld) &&
                 player2.DetectCollision(gameWorld))
             {
                 endMatch = true;
-                renderer.Draw();
+                renderer.RenderDraw();
                 ResetGame();
             }
             else if (player1.DetectCollision(gameWorld))
             {
                 endMatch = true;
                 player2.IncreaseScore();
-                renderer.Player2Wins();
+                renderer.RenderPlayer2Wins();
                 ResetGame();
             }
             else if (player2.DetectCollision(gameWorld))
             {
                 endMatch = true;
                 player1.IncreaseScore();
-                renderer.Player1Wins();
+                renderer.RenderPlayer1Wins();
                 ResetGame();
             }
 
