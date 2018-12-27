@@ -174,7 +174,13 @@ namespace Tron
         private bool VerifyWin()
         {
             bool endMatch = false;
-            if (player1.DetectCollision(gameWorld) &&
+            if (player1.Row == player2.Row && player1.Column == player2.Column)
+            {
+                endMatch = true;
+                renderer.Draw();
+                ResetGame();
+            }
+            else if (player1.DetectCollision(gameWorld) &&
                 player2.DetectCollision(gameWorld))
             {
                 endMatch = true;
