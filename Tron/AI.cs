@@ -132,8 +132,8 @@ namespace Tron
         /// <summary>
         /// Method that checks our nearest neighbours.
         /// </summary>
-        /// <param name="row"></param>
-        /// <param name="col"></param>
+        /// <param name="row">Row to check.</param>
+        /// <param name="col">Column to check.</param>
         /// <returns>Returns true if an enemy is found, false if not.</returns>
         private bool CheckNeighbours(int row, int col)
         {
@@ -180,6 +180,10 @@ namespace Tron
             return value;
         }
 
+		/// <summary>
+		/// Method that checks if the AI has an enenmy nearby.
+		/// </summary>
+		/// <returns>Returns true is and enemy is found.</returns>
         private bool IsEnemyNearby()
         {
             // Var to hold value to return
