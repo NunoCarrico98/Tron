@@ -179,6 +179,9 @@ namespace Tron
             Console.Write(" ");
         }
 
+		/// <summary>
+		/// Render message before exiting game.
+		/// </summary>
         public void ShowExitMessage()
         {
             Console.WriteLine("Press ENTER to quit.");

@@ -20,9 +20,12 @@ namespace Tron
 		/// </summary>
 		private readonly int yDim;
 		/// <summary>
-		/// Array that saves if the positions next to the AI are stepped
+		/// Array that saves if the positions next to the AI are stepped.
 		/// </summary>
 		private bool[] isStepped;
+		/// <summary>
+		/// Instance of the random class.
+		/// </summary>
         private Random rnd = new Random();
 
         public AI(bool[,] gameWorld, int xDim, int yDim, PlayerDirections direction, int column, int row)

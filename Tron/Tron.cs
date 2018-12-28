@@ -13,13 +13,37 @@ namespace Tron
 		/// </summary>
         private const int MS_PER_FRAME = 100;
 
+		/// <summary>
+		/// X Size of the game world.
+		/// </summary>
 		private readonly int xDim;
+		/// <summary>
+		/// Y Size of the game world.
+		/// </summary>
 		private readonly int yDim;
+		/// <summary>
+		/// Reference to the input system created in Program.
+		/// </summary>
 		private readonly InputSystem input;
+		/// <summary>
+		/// Reference to the renderer created in Program.
+		/// </summary>
         private readonly Renderer renderer;
+		/// <summary>
+		/// Array that represents the current state of the level.
+		/// </summary>
         private bool[,] gameWorld;
+		/// <summary>
+		/// Instance of the first player.
+		/// </summary>
         private Player player1;
+		/// <summary>
+		/// Instance of the second player.
+		/// </summary>
         private Player player2;
+		/// <summary>
+		/// Flag that indicates if user wants to go back to main menu.
+		/// </summary>
         private bool winFlag;
 
 		/// <summary>
@@ -190,7 +214,7 @@ namespace Tron
                 // Update world
                 Update();
 
-                // If someone has won, break to upperCycle
+                // If someone has won, break to Main Menu
                 if (winFlag) break;
 				// If user presses Escape
                 if (input.Ki.Key == ConsoleKey.Escape)
