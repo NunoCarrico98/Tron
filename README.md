@@ -1,4 +1,4 @@
-﻿# 2o Projeto de LP2 (2018)
+﻿# 2º Projeto de LP2 (2018)
 
 ## Our solution
 
