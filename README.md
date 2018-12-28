@@ -53,11 +53,11 @@ The other menu options only show other pages or exit the program.
 
 ### Flowchart
 
-![Flowchart](https://gitlab.com/rui-martins/lp2p1/uploads/39b8a56be11c03c6e57e18a694bb8402/LP2_P1_Flowchart.png)
+![Flowchart](https://gitlab.com/Robot_Game/tron/uploads/743e9c3295a529d294ae6032e6baf017/LP2_TRON_Flowchart.png)
 
 ### UML Diagram
 
-![Diagram(UML)](https://gitlab.com/rui-martins/lp2p1/uploads/b1122a7706e2e3a4b1b1266b507dead5/LP2_P1_UML.png)
+![Diagram(UML)](https://gitlab.com/Robot_Game/tron/uploads/a5c430a3772c059660ef3e7e2a55ca4e/LP2_TRON_UML.png)
 
 ## Conclusions
 
@@ -67,7 +67,7 @@ because we wanted to show messages to the user after every win / draw and we sim
 A whole restructure had to be done along with all the inputs (menus and such) all being received from the second `Thread`, otherwise
 we would have to press keys two times each time we wanted a simple `Console.ReadKey()`.
 
-We tried to do a very simple AI as an extra (it it dumb sometimes but it also surprises you).
+We tried to do a very simple AI as an extra (it is dumb sometimes but it also surprises you).
 We also made some music but later discovered that audio is not supported in `NetCore App`.
 
 Despite being simple, it expanded our knowledge to how games really work and it was very fun to do.
