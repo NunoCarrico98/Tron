@@ -21,8 +21,6 @@ namespace Tron
             Renderer renderer = new Renderer();
 			// Create a new input system
             InputSystem input = new InputSystem();
-			// Create and initialise input thread
-            Thread inputThread = new Thread(input.GetUserInput);
 
             // Initialize game
             Tron t = new Tron(Console.WindowHeight - 6, Console.WindowWidth/2 - 1, 
@@ -31,14 +29,8 @@ namespace Tron
 			// Cursor becomes invisible
             Console.CursorVisible = false;
 
-			// Start input thread
-            inputThread.Start();
-
             // Start game showing main menu first
             t.MainMenu();
-
-			// Wait for the input thread to join the "main" thread
-            inputThread.Join();
 		}
 	}
 }

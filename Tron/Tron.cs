@@ -22,6 +22,10 @@ namespace Tron
 		/// </summary>
 		private readonly int yDim;
 		/// <summary>
+		/// Thread for the input system.
+		/// </summary>
+		private Thread inputThread;
+		/// <summary>
 		/// Reference to the input system created in Program.
 		/// </summary>
 		private readonly InputSystem input;
@@ -59,9 +63,13 @@ namespace Tron
         {
 			// Initialise reference to the input system
             this.input = input;
+			// Create and initialise input thread
+			inputThread = new Thread(input.GetUserInput);
+			// Start input thread
+			inputThread.Start();
 
 			// Initialise world sizes
-            xDim = xdim;
+			xDim = xdim;
             yDim = ydim;
 
             // Initialize buffer where we store the game world
@@ -138,8 +146,10 @@ namespace Tron
                                 input.Player1KeysPressed -= player1.ChangeDirection;
                             if (eventsContent[1])
                                 input.Player2KeysPressed -= player2.ChangeDirection;
+							// Wait for the input thread to join the "main" thread
+							inputThread.Join();
 							// Quit Game
-                            Environment.Exit(1);
+							Environment.Exit(1);
                             break;
                     }
 
